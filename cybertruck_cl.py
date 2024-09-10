@@ -30,7 +30,7 @@ class CyberTruckSimulator:
         self.is_running = False
         self.battery_level = 100  # Battery starts at 100%
         self.issues = ["mechanical failure", "crash",
-                       "stuck in mud", "tire puncture", "battery dead", "red screen of death"]
+                       "stuck in mud", "tire puncture", "dead battery", "red screen of death"]
         self.fail_chance = 0.3  # 30% chance of random failure
         self.total_distance = 1000  # Distance to the destination
         self.failure_occurred = False
@@ -45,7 +45,7 @@ class CyberTruckSimulator:
             "crash": 1500,
             "stuck in mud": 100,
             "tire puncture": 50,
-            "battery dead": 0,  # No cost, just requires charging
+            "dead battery": 0,  # No cost, just requires charging
             "red screen of death": 0,  # No cost, just ends the game
         }
         self.tow_truck_cost = 200  # Tow truck cost
@@ -111,10 +111,10 @@ class CyberTruckSimulator:
                 # Check if battery is too low
                 if self.battery_level <= 0:
                     print("\nOh no! Your battery is dead. You need to recharge.")
-                    self.trigger_failure("battery dead")
+                    self.trigger_failure("dead battery")
             else:
                 print("\nThe battery is empty! You need to recharge.")
-                self.trigger_failure("battery dead")
+                self.trigger_failure("dead battery")
         else:
             print("\nYou can't drive! The truck is either stopped or has an issue.")
 
@@ -136,7 +136,7 @@ class CyberTruckSimulator:
         repair_cost = self.repair_costs.get(issue, 0)
 
         # 30% chance you need a tow truck
-        if random.random() < 0.3 and issue != "battery dead":
+        if random.random() < 0.3 and issue != "dead battery":
             print("\nYou need a tow truck for this repair!")
             repair_cost += self.tow_truck_cost
 
@@ -178,7 +178,7 @@ class CyberTruckSimulator:
 
     def fix_issue(self):
         if self.failure_occurred:
-            if "battery dead" in self.issues and self.battery_level <= 0:
+            if "dead battery" in self.issues and self.battery_level <= 0:
                 print("\nYou can't fix the issue without charging first.")
             else:
                 self.pay_for_repair(self.failure_issue)
@@ -206,7 +206,7 @@ class CyberTruckSimulator:
         self.money -= self.tow_truck_cost
         self.distance = take_closest(self.charging_stations, self.distance)
         self.charge_battery()
-        if self.failure_issue == "battery dead":
+        if self.failure_issue == "dead battery":
             self.failure_occurred = False
             self.failure_issue = None
 
