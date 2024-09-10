@@ -242,7 +242,7 @@ class CyberTruckSimulator:
         user_choice = input(
             "\nWould you like to send a tweet to Elon Musk about the delay? (yes/no): ").lower()
 
-        if user_choice == 'yes':
+        if user_choice == 'yes' or user_choice == 'y':
             tweet = random.choice(tweets) + "I still love the truck!"
             print(f"\nSending tweet: '{tweet}'")
         else:
