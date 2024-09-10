@@ -83,7 +83,7 @@ Due to the nature of Cybertruck, which is made of bright metal with mostly strai
 
 All parts of this simulator, whether code or UI, need to be designed and built to sub 10 micron accurancy.
 
-If LEGO ans soda cans, which are very low cost, can do this, so can we.
+If LEGO and soda cans, which are very low cost, can do this, so can we.
 
 Precision predicates perfectionism.
 
