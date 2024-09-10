@@ -257,7 +257,20 @@ def game_loop():
     truck_sim = CyberTruckSimulator()
     game_over = False
 
-    print("Welcome to the CyberTruck Simulator!")
+    print("   _____      _            _______              _     ")
+    print("  / ____|    | |          |__   __|            | |    ")
+    print(" | |    _   _| |__   ___ _ __| |_ __ _   _  ___| | __ ")
+    print(" | |   | | | | '_ \ / _ \ '__| | '__| | | |/ __| |/ / ")
+    print(" | |___| |_| | |_) |  __/ |  | | |  | |_| | (__|   <  ")
+    print("  \_____\__, |_.__/ \___|_|  |_|_|   \__,_|\___|_|\_\ ")
+    print("   ________/ |             _       _                  ")
+    print("  /_________/             | |     | |                 ")
+    print(" | (___  _ _ __ ___  _   _| | __ _| |_ ___  _ __      ")
+    print("  \___ \| | '_ ` _ \| | | | |/ _` | __/ _ \| '__|     ")
+    print("  ____) | | | | | | | |_| | | (_| | || (_) | |        ")
+    print(" |_____/|_|_| |_| |_|\__,_|_|\__,_|\__\___/|_|        ")
+
+    print("\nWelcome to the CyberTruck Simulator!")
 
     while not game_over:
         print("\nWhat would you like to do?")
