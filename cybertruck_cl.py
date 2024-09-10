@@ -126,7 +126,7 @@ class CyberTruckSimulator:
         if not issue:
             issue = random.choice(self.issues)
         if issue == "red screen of death":
-            print(f"\nOh no! The dreaded {issue} has occurred. Your CyberTruck just bricked itself and caught fire. Game over!")
+            print(f"\nOh no! The dreaded {issue} has occurred.\nYour CyberTruck just bricked itself and caught fire.\nGame over!")
             exit()
         print(f"\nOh no! A {issue} has occurred. You need to fix it before you can continue.")
         self.is_running = False
