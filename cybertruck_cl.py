@@ -30,7 +30,7 @@ class CyberTruckSimulator:
         self.is_running = False
         self.battery_level = 100  # Battery starts at 100%
         self.issues = ["mechanical failure", "crash",
-                       "stuck in mud", "tire puncture", "battery dead"]
+                       "stuck in mud", "tire puncture", "battery dead", "red screen of death"]
         self.fail_chance = 0.3  # 30% chance of random failure
         self.total_distance = 1000  # Distance to the destination
         self.failure_occurred = False
@@ -46,6 +46,7 @@ class CyberTruckSimulator:
             "stuck in mud": 100,
             "tire puncture": 50,
             "battery dead": 0,  # No cost, just requires charging
+            "red screen of death": 0,  # No cost, just ends the game
         }
         self.tow_truck_cost = 200  # Tow truck cost
         self.service_center_cost = 1000  # Tesla Service Center cost
@@ -124,6 +125,9 @@ class CyberTruckSimulator:
     def trigger_failure(self, issue=None):
         if not issue:
             issue = random.choice(self.issues)
+        if issue == "red screen of death":
+            print(f"\nOh no! The dreaded {issue} has occurred. Your CyberTruck just bricked itself and caught fire. Game over!")
+            exit()
         print(f"\nOh no! A {issue} has occurred. You need to fix it before you can continue.")
         self.is_running = False
         self.failure_issue = issue
