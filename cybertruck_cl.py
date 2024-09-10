@@ -163,6 +163,11 @@ class CyberTruckSimulator:
         time.sleep(service_center_time)
         print(f"Spent {service_center_time} days at the service center.")
 
+        # Thanks to JeanLuc_Moultonde: https://shorturl.at/o2Ox3
+        if random.random() < 0.1:
+            print("Truck is totaled, sorry we can't do shit. Game over!")
+            exit()
+
         if self.money >= self.service_center_cost:
             print(f"\nService center visit will cost ${
                   self.service_center_cost}.")
