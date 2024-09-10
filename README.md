@@ -17,24 +17,27 @@ To run the game, you'll need Python installed on your system. The game is compat
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/hargikas/CyberTruckSim.git
+   ```
 
 2. **Navigate to the project directory**:
    ```bash
    cd cybertruck-simulator
+   ```
 
 3. **Run the game**:
    ```bash
    python cybertruck_simulator.py
+   ```
 
 ## How to Play
 
-1. Start the Truck: Begin your journey by starting the CyberTruck.
-2. Drive: Move towards your destination while managing the battery and dealing with random failures.
-3. Manage Failures: Address any issues that arise. Some may require expensive repairs or visits to the service center.
-4. Charge: Stop at charging stations to recharge the battery and continue your journey.
-5. Handle Obstacles: Deal with various obstacles that affect your progress.
-6. Check Status: Monitor your truck's status, including battery level, distance traveled, and finances.
-7. Send Tweets: After encountering delays, choose to send a tweet to Elon Musk to lighten the mood.
+1. **Start the Truck**: Begin your journey by starting the CyberTruck.
+2. **Drive**: Move towards your destination while managing the battery and dealing with random failures.
+3. **Manage Failures**: Address any issues that arise. Some may require expensive repairs or visits to the service center.
+4. **Charge**: Stop at charging stations to recharge the battery and continue your journey.
+5. **Handle Obstacles**: Deal with various obstacles that affect your progress.
+6. **Check Status**: Monitor your truck's status, including battery level, distance traveled, and finances.
+7. **Send Tweets**: After encountering delays, choose to send a tweet to Elon Musk to lighten the mood.
 
 ## Game Controls
 
@@ -69,6 +72,7 @@ Here's a brief example of what you might encounter in the game:
    
    Would you like to send a tweet to Elon Musk about the delay? (yes/no): yes
    Sending tweet: 'Just another day with the CyberTruck, but still pushing through! I still love the truck!'
+   ```
 
 ## Contributing
 
