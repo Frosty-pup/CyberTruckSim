@@ -21,12 +21,12 @@ To run the game, you'll need Python installed on your system. The game is compat
 
 2. **Navigate to the project directory**:
    ```bash
-   cd cybertruck-simulator
+   cd CyberTruckSim
    ```
 
 3. **Run the game**:
    ```bash
-   python cybertruck_simulator.py
+   python cybertruck_cl.py
    ```
 
 ## How to Play
@@ -56,12 +56,13 @@ Here's a brief example of what you might encounter in the game:
    Welcome to the CyberTruck Simulator!
    
    What would you like to do?
-   1. Start the truck
-   2. Stop the truck
-   3. Drive
-   4. Fix the truck
-   5. Check status
-   6. Exit
+  1. Start the truck
+  2. Stop the truck
+  3. Drive
+  4. Fix the truck
+  5. Get Towed - Charge the car
+  6. Check status
+  7. Exit
    
    Enter the number of your choice: 3
    
@@ -78,6 +79,14 @@ Here's a brief example of what you might encounter in the game:
 
 Feel free to fork the repository, submit pull requests, and suggest features or improvements. All contributions are welcome!
 
+Due to the nature of Cybertruck, which is made of bright metal with mostly straight edges, any dimensional variation shows up like a sore thumb.
+
+All parts of this simulator, whether code or UI, need to be designed and built to sub 10 micron accurancy.
+
+If LEGO ans soda cans, which are very low cost, can do this, so can we.
+
+Precision predicates perfectionism.
+
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+Copying and distribution of this file, with or without modification, are permitted in any medium provided you do not contact the author about the file or any problems you are having with the file
