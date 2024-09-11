@@ -148,7 +148,7 @@ class CyberTruckSimulator:
         if self.money >= repair_cost:
             print(f"\nRepairing {issue} will cost you ${repair_cost}.")
             self.money -= repair_cost
-            print(f"   Remaining money: ${self.money}")
+            print(f"Remaining money: ${self.money}")
         else:
             print(f"\nYou don't have enough money (${self.money}) to repair the {issue}.\nGAME OVER!")
             exit()
@@ -161,17 +161,17 @@ class CyberTruckSimulator:
             5, 10)  # Simulate a long delay in days
         # Simulate the time passing (shortened for playability)
         time.sleep(service_center_time)
-        print(f"   Spent {service_center_time} days looking into it at the service center.")
+        print(f"Spent {service_center_time} days looking into it at the service center.")
 
         # Thanks to JeanLuc_Moultonde: https://shorturl.at/o2Ox3
         if random.random() < 0.1:
-            print("   Truck is totaled, sorry we can't do shit.\nGAME OVER!")
+            print("Truck is totaled, sorry we can't do shit.\nGAME OVER!")
             exit()
 
         if self.money >= self.service_center_cost:
             print(f"\nService center visit will cost ${self.service_center_cost}.")
             self.money -= self.service_center_cost
-            print(f"   Remaining money: ${self.money}")
+            print(f"Remaining money: ${self.money}")
         else:
             print(f"\nYou don't have enough money (${self.money}) to pay for the Tesla Service Center.\nGAME OVER!")
             exit()
@@ -196,7 +196,7 @@ class CyberTruckSimulator:
             time.sleep(3)  # Simulate charging time
             self.battery_level = 100
             self.money -= charge_cost
-            print(f"   The battery is now fully charged.\nRemaining money: ${self.money}\n")
+            print(f"The battery is now fully charged.\nRemaining money: ${self.money}\n")
         else:
             print(f"\nYou don't have enough money (${self.money}) to charge the battery. Game over!")
             exit()
