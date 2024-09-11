@@ -250,7 +250,7 @@ class CyberTruckSimulator:
             tweets = [
                 "Elon, please fix this thing asap, I love Tesla! ",
                 "Build quality and performance are far below my expectations, hope next update will improve it! ",
-                "I'm so glad I traded in my reliable sedan for this piece of engineering art that can't even keep the rain out! ",
+                "I traded in my reliable sedan for this piece of engineering art that can't even keep the rain out! ",
                 "I'm so glad I spent my hard-earned cash on a vehicle that's more prone to dents than a tin can. ",
                 "Not exactly the kind of adventure I was hoping for!",
             ]
@@ -260,8 +260,8 @@ class CyberTruckSimulator:
                 "Really disappointed with the build quality issues I've encountered! ",
                 "Worst car ever. Elon, you should definitely look into it! ",
                 "One more problem and I'll sell that shiny turd! ",
-                "Oh, I just love how my Cybertruck's bulletproof windows shatter at the slightest touch—truly a feature, not a flaw! ",
-                "Great, another software update that turns my Cybertruck into a glorified paperweight. Thanks Elon, just what I needed! "
+                "My Cybertruck's bulletproof windows shatter at the slightest touch—truly a feature, not a flaw! ",
+                "Another update that turns my Cybertruck into a glorified paperweight. Thanks Elon! "
             ]
             magic_sentence = "Worst truck ever!"
         user_choice = input(
