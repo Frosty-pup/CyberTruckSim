@@ -217,7 +217,7 @@ class CyberTruckSimulator:
               f"- Money: ${self.money}\n- Your happiness: {self.happiness}%\n- Truck running: {self.is_running}\n")
         if self.failure_occurred:
             print("Warning: The truck has an issue that needs to be fixed!\n")
-        print(f"Charging stations ahead at: {', '.join(map(str, self.charging_stations))} miles")
+        print(f"Charging stations ahead at: {', '.join(map(str, self.charging_stations))} miles\n")
 
     def trigger_obstacle(self):
         obstacle = random.choice(self.obstacles)
@@ -283,7 +283,7 @@ class CyberTruckSimulator:
 
         if user_choice == 'yes' or user_choice == 'y':
             tweet = random.choice(tweets) + random.choice(magic_sentences)
-            print(f"\nSending tweet: '{tweet}'\n")
+            print(f"\nSending tweet:\n   '{tweet}'\n")
         else:
             print("\nNo tweet sent. Warranty voided!\n")
 
