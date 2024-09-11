@@ -3,6 +3,7 @@
 import random
 import time
 from bisect import bisect_left
+import os
 
 
 def take_closest(myList, myNumber):
@@ -26,6 +27,7 @@ def take_closest(myList, myNumber):
 
 class CyberTruckSimulator:
     def __init__(self):
+        self.happiness = 100
         self.distance = 0
         self.is_running = False
         self.battery_level = 100  # Battery starts at 100%
@@ -234,18 +236,30 @@ class CyberTruckSimulator:
             time.sleep(2)  # Simulate a short wait while animals cross the road
 
     def prompt_for_tweet(self):
-        tweets = [
-            "Just another day with the CyberTruck, but still pushing through! ",
-            "Having some trouble with the CyberTruck, but it's all part of the adventure! ",
-            "Another delay, but I trust the CyberTruck will get me through! ",
-            "Faced a few bumps on the road today with my CyberTruck. ",
-            "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon! "
-        ]
+        if self.happiness >=80:
+
+            tweets = [
+                "Just another day with the CyberTruck, but still pushing through! ",
+                "Having some trouble with the CyberTruck, but it's all part of the adventure! ",
+                "Another delay, but I trust the CyberTruck will get me through! ",
+                "Faced a few bumps on the road today with my CyberTruck. ",
+                "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon! "
+            ]
+        if self.happiness <80 & self.happiness >= 60:
+
+            tweets = [
+                "copium"
+            ]
+        if self.happiness < 60:
+
+            tweets = [
+                "ex-musky boi "
+            ]
         user_choice = input(
             "\nWould you like to send a tweet to Elon Musk about the delay? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
-            tweet = random.choice(tweets) + "I still love the truck!"
+            tweet = random.choice(tweets)
             print(f"\n   Sending tweet: '{tweet}'\n")
         else:
             print("\n   No tweet sent. Warranty voided!\n")
@@ -286,16 +300,22 @@ def game_loop():
         choice = input("\nEnter the number of your choice: ")
 
         if choice == '1':
+            os.system('cls' if os.name == 'nt' else 'clear')
             truck_sim.start_truck()
         elif choice == '2':
+            os.system('cls' if os.name == 'nt' else 'clear')
             truck_sim.stop_truck()
         elif choice == '3':
+            os.system('cls' if os.name == 'nt' else 'clear')
             game_over = truck_sim.drive()
         elif choice == '4':
+            os.system('cls' if os.name == 'nt' else 'clear')
             truck_sim.fix_issue()
         elif choice == '5':
+            os.system('cls' if os.name == 'nt' else 'clear')
             truck_sim.tow_and_charge_battery()
         elif choice == '6':
+            os.system('cls' if os.name == 'nt' else 'clear')
             truck_sim.check_status()
         elif choice == '7':
             print("Exiting the simulator. Goodbye!")
@@ -306,4 +326,5 @@ def game_loop():
 
 # Run the game loop
 if __name__ == "__main__":
+
     game_loop()
