@@ -31,14 +31,15 @@ class CyberTruckSimulator:
         self.distance = 0
         self.is_running = False
         self.battery_level = 100  # Battery starts at 100%
-        self.issues = ["mechanical failure", "crash", "stuck in mud", "tire puncture", "dead battery", "red screen of death"]
+        self.issues = ["mechanical failure", "crash", "stuck in mud",
+                       "tire puncture", "dead battery", "red screen of death"]
         self.fail_chance = 0.3  # 30% chance of random failure
         self.total_distance = 1000  # Distance to the destination
         self.failure_occurred = False
         self.charging_stations = self.generate_charging_stations()
         self.battery_depletion_rate = 100.0/320.0  # Default battery depletion rate
-        self.obstacles = ["roadblock", "traffic jam",
-                          "bad weather", "wildlife crossing"]
+        self.obstacles = ["MAGA rally", "traffic jam",
+                          "bad weather", "raccoon attack"]
         self.obstacle_chance = 0.3  # 30% chance of encountering an obstacle
         self.money = 10000  # Start with $10000
         self.repair_costs = {
@@ -46,6 +47,8 @@ class CyberTruckSimulator:
             "crash": 1500,
             "stuck in mud": 100,
             "tire puncture": 50,
+            "broken GigaWiper": 150,
+            "flying panel": 200,
             "dead battery": 0,  # No cost, just requires charging
             "red screen of death": 0,  # No cost, just ends the game
         }
@@ -123,7 +126,8 @@ class CyberTruckSimulator:
         if not issue:
             issue = random.choice(self.issues)
         if issue == "red screen of death":
-            print(f"OH NO! The dreaded {issue} has occurred.\nYour CyberTruck just bricked itself and caught fire.\nGAME OVER!\n")
+            print(f"OH NO! The dreaded {issue} has occurred.\n"
+                  f"Your CyberTruck just bricked itself and caught fire.\nGAME OVER!\n")
             exit()
         print(f"OH NO! A {issue} has occurred.\nYou need to fix it before you can continue.\n")
         self.happiness -= 10
@@ -135,11 +139,11 @@ class CyberTruckSimulator:
 
         # 30% chance you need a tow truck
         if random.random() < 0.3 and issue != "dead battery":
-            print("\nYou need a tow truck for this repair!")
+            print("\nYou need a flatbed tow truck for this repair!")
             repair_cost += self.tow_truck_cost
 
         # 20% chance for Tesla Service Center for major issues
-        if issue in ["mechanical failure", "crash"] and random.random() < 0.2:
+        if issue in ["mechanical failure", "crash", "flying panel", "broken GigaWiper"] and random.random() < 0.2:
             print("\nThis issue requires a visit to the Tesla Service Center!")
             self.visit_service_center()
 
@@ -148,7 +152,7 @@ class CyberTruckSimulator:
             self.money -= repair_cost
             print(f"Remaining money: ${self.money}")
         else:
-            print(f"\nYou don't have enough money (${self.money}) to repair the {issue}.\nGAME OVER!")
+            print(f"\nYou don't have enough money (${self.money}) to repair the {issue}.\nGAME OVER!\n")
             exit()
 
         self.failure_occurred = False
@@ -163,7 +167,7 @@ class CyberTruckSimulator:
 
         # Thanks to JeanLuc_Moultonde: https://shorturl.at/o2Ox3
         if random.random() < 0.1:
-            print("Truck is totaled, sorry we can't do shit.\nGAME OVER!")
+            print("Truck is totaled, sorry we can't do shit.\nGAME OVER!\n")
             exit()
 
         if self.money >= self.service_center_cost:
@@ -171,7 +175,7 @@ class CyberTruckSimulator:
             self.money -= self.service_center_cost
             print(f"Remaining money: ${self.money}")
         else:
-            print(f"\nYou don't have enough money (${self.money}) to pay for the Tesla Service Center.\nGAME OVER!")
+            print(f"\nYou don't have enough money (${self.money}) to pay for the Tesla Service Center.\nGAME OVER!\n")
             exit()
 
     def fix_issue(self):
@@ -196,11 +200,11 @@ class CyberTruckSimulator:
             self.money -= charge_cost
             print(f"The battery is now fully charged.\nRemaining money: ${self.money}\n")
         else:
-            print(f"\nYou don't have enough money (${self.money}) to charge the battery. Game over!")
+            print(f"\nYou don't have enough money (${self.money}) to charge the battery. GAME OVER!\n")
             exit()
 
     def tow_and_charge_battery(self):
-        print("\nYou need a tow truck to get you to the nearest charging station!")
+        print("\nYou need a flatbed tow truck to get you to the nearest charging station!")
         self.money -= self.tow_truck_cost
         self.distance = take_closest(self.charging_stations, self.distance)
         self.charge_battery()
@@ -209,28 +213,30 @@ class CyberTruckSimulator:
             self.failure_issue = None
 
     def check_status(self):
-        print(f"\nCURRENT STATUS:\n- Distance traveled: {self.distance} miles\n- Battery level: {self.battery_level}%\n- Money: ${self.money}\n- Your happiness: {self.happiness}%\n- Truck running: {self.is_running}\n")
+        print(f"\nCURRENT STATUS:\n- Distance traveled: {self.distance} miles\n- Battery level: {self.battery_level}%\n"
+              f"- Money: ${self.money}\n- Your happiness: {self.happiness}%\n- Truck running: {self.is_running}\n")
         if self.failure_occurred:
             print("Warning: The truck has an issue that needs to be fixed!\n")
         print(f"Charging stations ahead at: {', '.join(map(str, self.charging_stations))} miles")
 
     def trigger_obstacle(self):
         obstacle = random.choice(self.obstacles)
-        print(f"Obstacle encountered: {obstacle}!")
+        print(f"{obstacle.upper()}")
 
-        if obstacle == "roadblock":
-            print("A MAGA rally of 4 people is blocking the road. You must stop and wait. This delays your journey.\n")
+        if obstacle == "MAGA rally":
+            print("   A big MAGA rally of 4 people is blocking the road.\n   You make a detour, delaying your journey.\n")
             # Set back distance by a few miles (as a detour)
             self.distance -= random.randint(1, 50)
         elif obstacle == "traffic jam":
-            print("You're stuck in a traffic jam! Progress is slower for the next few miles.\n")
+            print("   You're stuck in a traffic jam!\n   Progress is slower for the next few miles.\n")
             self.battery_depletion_rate *= 3  # Increase battery depletion for the next period
         elif obstacle == "bad weather":
-            print("Bad weather is making it harder to drive. Tonneau is leaking and battery depletes faster.\n")
+            print("   Bad weather is making it harder to drive.\n   Battery depletes faster, tonneau starts to leak.\n")
             self.battery_depletion_rate *= 4  # Battery depletes faster due to weather
-        elif obstacle == "wildlife crossing":
-            print("Racoons are trying to break in your truck while you're stopped at the red light. Drive before they get in the tonneau!\n")
-            time.sleep(2)  # Simulate a short wait while animals cross the road
+        elif obstacle == "raccoon attack":
+            print("   Racoons are trying to break in the tonneau while you're at the red light.\n"
+                  "   Drive before they eat the plastic bed!\n")
+            time.sleep(2)  # Simulate a short wait while at the red light
 
     def prompt_for_tweet(self):
         if self.happiness >= 80:
@@ -257,7 +263,7 @@ class CyberTruckSimulator:
             magic_sentences = [
                 "Still love the truck though!",
                 "Elon, please help!",
-                "Still love my Beast tho!",
+                "Still love the Beast tho!",
             ]
         elif self.happiness < 50:
             tweets = [
@@ -272,7 +278,7 @@ class CyberTruckSimulator:
                 "I hate you Elon, fck Tesla!",
                 "Hate that shitbox!",
             ]
-            
+
         user_choice = input("\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
