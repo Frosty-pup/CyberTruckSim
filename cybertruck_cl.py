@@ -109,10 +109,10 @@ class CyberTruckSimulator:
 
                 # Check if battery is too low
                 if self.battery_level <= 0:
-                    print("\nOh no! Your battery is dead. You need to recharge.")
+                    print("\nOh no! Your battery is empty. Recharge quickly before your truck bricks!")
                     self.trigger_failure("dead battery")
             else:
-                print("\nThe battery is empty! You need to recharge.")
+                print("\nOh no! Your battery is empty. Recharge quickly before your truck bricks!")
                 self.trigger_failure("dead battery")
         else:
             print("\nYou can't drive!\nThe truck is either stopped or has an issue.\n")
