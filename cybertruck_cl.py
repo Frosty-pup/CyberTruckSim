@@ -246,7 +246,7 @@ class CyberTruckSimulator:
                 "Best truck ever though!",
                 "Still love my CT, thanks Elon!",
             ]
-        if 80 > self.happiness >= 50:
+        elif 80 > self.happiness >= 50:
             tweets = [
                 "Elon, please fix this thing asap, it drives me crazy! ",
                 "Build quality and performance are far below my expectations, hope next update will improve it! ",
@@ -259,7 +259,7 @@ class CyberTruckSimulator:
                 "Elon, please help!",
                 "Still love my Beast tho!",
             ]
-        if self.happiness < 50:
+        elif self.happiness < 50:
             tweets = [
                 "Really disappointed with the build quality issues I've encountered! ",
                 "Worst car ever. Elon, you should definitely look into it! ",
@@ -272,6 +272,7 @@ class CyberTruckSimulator:
                 "I hate you Elon, fck Tesla!",
                 "Hate that shitbox!",
             ]
+            
         user_choice = input("\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
