@@ -235,7 +235,6 @@ class CyberTruckSimulator:
             time.sleep(2)  # Simulate a short wait while animals cross the road
 
     def prompt_for_tweet(self):
-        magic_sentence = ""
         if self.happiness >= 80:
             tweets = [
                 "Just another day with the CyberTruck, but still pushing through! ",
@@ -244,7 +243,11 @@ class CyberTruckSimulator:
                 "Faced a few bumps on the road today with my CyberTruck. ",
                 "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon! "
             ]
-            magic_sentence = "Best truck ever!"
+            magic_sentences = [
+                "Still love the truck though!",
+                "Best truck ever though!",
+                "Still love my CT, thanks Elon!",
+            ]
         if self.happiness < 80 & self.happiness >= 60:
             tweets = [
                 "Elon, please fix this thing asap, I love Tesla! ",
@@ -253,7 +256,11 @@ class CyberTruckSimulator:
                 "I'm so glad I spent my hard-earned cash on a vehicle that's more prone to dents than a tin can. ",
                 "Not exactly the kind of adventure I was hoping for!",
             ]
-            magic_sentence = "Still love the truck though!"
+            magic_sentences = [
+                "Still love the truck though!",
+                "Elon, please fix my truck!",
+                "But i still love my CyberTruck!",
+            ]
         if self.happiness < 60:
             tweets = [
                 "Really disappointed with the build quality issues I've encountered! ",
@@ -262,12 +269,16 @@ class CyberTruckSimulator:
                 "My Cybertruck's bulletproof windows shatter at the slightest touch—truly a feature, not a flaw! ",
                 "Another update that turns my Cybertruck into a glorified paperweight. Thanks Elon! "
             ]
-            magic_sentence = "Worst truck ever!"
+            magic_sentences = [
+                "Worst truck ever!",
+                "I hate you Elon",
+                "Hate that shitbox!",
+            ]
         user_choice = input(
             "\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
-            tweet = random.choice(tweets) + magic_sentence
+            tweet = random.choice(tweets) + random.choice(magic_sentences)
             print(f"\nSending tweet: '{tweet}'\n")
         else:
             print("\nNo tweet sent. Warranty voided!\n")
