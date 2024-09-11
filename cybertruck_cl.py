@@ -1,4 +1,5 @@
-# Licenses: Copying and distribution of this file, with or without modification, are permitted in any medium provided you do not contact the author about the file or any problems you are having with the file.
+# Licenses: Copying and distribution of this file, with or without modification, are permitted in any medium
+# provided you do not contact the author about the file or any problems you are having with the file.
 
 import random
 import time
@@ -224,7 +225,8 @@ class CyberTruckSimulator:
         print(f"{obstacle.upper()}")
 
         if obstacle == "MAGA rally":
-            print("   A big MAGA rally of 4 people is blocking the road.\n   You make a detour, delaying your journey.\n")
+            print("   A big MAGA rally of 4 people is blocking the road.\n   "
+                  "You make a detour, delaying your journey.\n")
             # Set back distance by a few miles (as a detour)
             self.distance -= random.randint(1, 50)
         elif obstacle == "traffic jam":
@@ -292,33 +294,33 @@ def game_loop():
     truck_sim = CyberTruckSimulator()
     game_over = False
 
-    print("   _____      _            _______              _     ")
-    print("  / ____|    | |          |__   __|            | |    ")
-    print(" | |    _   _| |__   ___ _ __| |_ __ _   _  ___| | __ ")
-    print(" | |   | | | | '_ \\ / _ \\ '__| | '__| | | |/ __| |/ / ")
-    print(" | |___| |_| | |_) |  __/ |  | | |  | |_| | (__|   <  ")
-    print("  \\_____\\__, |_.__/ \\___|_|  |_|_|   \\__,_|\\___|_|\\_\\ ")
-    print("   ________/ |             _       _                  ")
-    print("  /_________/             | |     | |                 ")
-    print(" | (___  _ _ __ ___  _   _| | __ _| |_ ___  _ __      ")
-    print("  \\___ \\| | '_ ` _ \\| | | | |/ _` | __/ _ \\| '__|     ")
-    print("  ____) | | | | | | | |_| | | (_| | || (_) | |        ")
-    print(" |_____/|_|_| |_| |_|\\__,_|_|\\__,_|\\__\\___/|_|        ")
     print("\n======================================================")
     print("        Welcome to the CyberTruck Simulator!")
     print("======================================================")
+    print("   ______________________________________________     ")
+    print("  / _________   _____________   _______________  |    ")
+    print(" | |    _   _| |__   ___ _ __| |_ __ _   _  ___| | __ ")
+    print(" | |   | | | | '_ \\ / _ \\ '__| | '__| | | |/ __| |/ / ")
+    print(" | |___| |_| | |_) |  __/ |  | | |  | |_| | (__|   <  ")
+    print("  \\_____\\__, |_.__/ \\___|_|  | |_|   \\__,_|\\___|_|\\_\\ ")
+    print("      _____/ |               | |      _                  ")
+    print("     /______/                | |     | |                 ")
+    print("    | (___  _ _ __ ___  _   _| | __ _| |_ ___  _ ___ ")
+    print("     \\___ \\| | '_ ` _ \\| | | | |/ _` | __/ _ \\| '___|")
+    print("  _______) | | | | | | | |_| | | (_| | || (_) | |        ")
+    print(" |________/|_|_| |_| |_|\\__,_|_|\\__,_|\\__\\___/|_|        \n")
 
     while not game_over:
-        print("          ----------------------------------")
-        print("          | What would you like to do?     |")
-        print("          |  1. Start the truck            |")
-        print("          |  2. Stop the truck             |")
-        print("          |  3. Drive                      |")
-        print("          |  4. Fix the truck              |")
-        print("          |  5. Get Towed - Charge the car |")
-        print("          |  6. Check status               |")
-        print("          |  7. Exit                       |")
-        print("          ----------------------------------")
+        print("         ----------------------------------")
+        print("         | What would you like to do?     |")
+        print("         |  1. Start the truck            |")
+        print("         |  2. Stop the truck             |")
+        print("         |  3. Drive                      |")
+        print("         |  4. Fix the truck              |")
+        print("         |  5. Get Towed - Charge the car |")
+        print("         |  6. Check status               |")
+        print("         |  7. Exit                       |")
+        print("         ----------------------------------")
 
         choice = input("\nEnter the number of your choice: ")
 
