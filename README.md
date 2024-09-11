@@ -1,6 +1,6 @@
 # CyberTruck Simulator
 
-Welcome to **CyberTruck Simulator**, a fun and challenging driving simulation game where you manage a CyberTruck's battery, handle mechanical failures, navigate obstacles, and manage costs while making your way to the destination.
+Welcome to **CyberTruck Simulator**, a fun and challenging driving simulation game where you manage a CyberTruck's battery, handle mechanical failures, navigate obstacles, and manage costs while trying to make your way to the destination.
 
 ## Features
 
@@ -45,8 +45,9 @@ To run the game, you'll need Python installed on your system. The game is compat
 - 2: Stop the truck
 - 3: Drive
 - 4: Fix the truck
-- 5: Check status
-- 6: Exit the game
+- 5: Get Towed - Charge the car
+- 6: Check status
+- 7: Exit the game
 
 ## Example Gameplay
 
@@ -71,7 +72,7 @@ Here's a brief example of what you might encounter in the game:
    Repairing mechanical failure will cost you $100.
    Remaining money: $900
    
-   Would you like to send a tweet to Elon Musk about the delay? (yes/no): yes
+   Would you like to send a tweet to Elon Musk about your experience? (yes/no): yes
    Sending tweet: 'Just another day with the CyberTruck, but still pushing through! I still love the truck!'
    ```
 
@@ -81,7 +82,7 @@ Feel free to fork the repository, submit pull requests, and suggest features or 
 
 Due to the nature of Cybertruck, which is made of bright metal with mostly straight edges, any dimensional variation shows up like a sore thumb.
 
-All parts of this simulator, whether code or UI, need to be designed and built to sub 10 micron accurancy.
+All parts of this simulator, whether code or UI, need to be designed and built to sub 10 micron accuracy.
 
 If LEGO and soda cans, which are very low cost, can do this, so can we.
 
