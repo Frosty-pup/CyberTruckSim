@@ -57,8 +57,7 @@ class CyberTruckSimulator:
         # Generate random charging stations between 10 and 90 miles
         offset = 10
         no_stations = 30
-        stations = random.sample(
-            range(offset, self.total_distance - offset), no_stations)
+        stations = random.sample(range(offset, self.total_distance - offset), no_stations)
         stations.sort()
         return stations
 
@@ -84,8 +83,7 @@ class CyberTruckSimulator:
                 distance_this_drive = random.randint(1, 50)  # Drive between 1 and 50 miles
                 print(f"\nDriving... Traveled {distance_this_drive} miles.\n")
                 self.distance += distance_this_drive
-                self.battery_level -= int(round(distance_this_drive *
-                                          self.battery_depletion_rate, 0))
+                self.battery_level -= int(round(distance_this_drive * self.battery_depletion_rate, 0))
 
                 # Check for charging station
                 if self.distance in self.charging_stations:
@@ -128,6 +126,7 @@ class CyberTruckSimulator:
             print(f"OH NO! The dreaded {issue} has occurred.\nYour CyberTruck just bricked itself and caught fire.\nGAME OVER!\n")
             exit()
         print(f"OH NO! A {issue} has occurred.\nYou need to fix it before you can continue.\n")
+        self.happiness -= 10
         self.is_running = False
         self.failure_issue = issue
 
@@ -210,9 +209,9 @@ class CyberTruckSimulator:
             self.failure_issue = None
 
     def check_status(self):
-        print(f"\nCurrent status: Distance traveled: {self.distance} miles, Battery level: {self.battery_level}%, Money: ${self.money}, Truck running: {self.is_running}")
+        print(f"\nCURRENT STATUS:\n- Distance traveled: {self.distance} miles\n- Battery level: {self.battery_level}%\n- Money: ${self.money}\n- Your happiness: {self.happiness}%\n- Truck running: {self.is_running}\n")
         if self.failure_occurred:
-            print("Warning: The truck has an issue that needs to be fixed!")
+            print("Warning: The truck has an issue that needs to be fixed!\n")
         print(f"Charging stations ahead at: {', '.join(map(str, self.charging_stations))} miles")
 
     def trigger_obstacle(self):
@@ -220,17 +219,17 @@ class CyberTruckSimulator:
         print(f"Obstacle encountered: {obstacle}!")
 
         if obstacle == "roadblock":
-            print("You must stop and wait for a detour. This delays your journey.\n")
+            print("A MAGA rally of 4 people is blocking the road. You must stop and wait. This delays your journey.\n")
             # Set back distance by a few miles (as a detour)
             self.distance -= random.randint(1, 50)
         elif obstacle == "traffic jam":
             print("You're stuck in a traffic jam! Progress is slower for the next few miles.\n")
             self.battery_depletion_rate *= 3  # Increase battery depletion for the next period
         elif obstacle == "bad weather":
-            print("Bad weather is making it harder to drive. Battery depletes faster.\n")
+            print("Bad weather is making it harder to drive. Tonneau is leaking and battery depletes faster.\n")
             self.battery_depletion_rate *= 4  # Battery depletes faster due to weather
         elif obstacle == "wildlife crossing":
-            print("Wildlife is crossing the road. You have to stop and wait.\n")
+            print("Racoons are trying to break in your truck while you're stopped at the red light. Drive before they get in the tonneau!\n")
             time.sleep(2)  # Simulate a short wait while animals cross the road
 
     def prompt_for_tweet(self):
@@ -240,41 +239,40 @@ class CyberTruckSimulator:
                 "Having some trouble with the CyberTruck, but it's all part of the adventure! ",
                 "Another delay, but I trust the CyberTruck will get me through! ",
                 "Faced a few bumps on the road today with my CyberTruck. ",
-                "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon! "
+                "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon! ",
             ]
             magic_sentences = [
                 "Still love the truck though!",
                 "Best truck ever though!",
                 "Still love my CT, thanks Elon!",
             ]
-        if self.happiness < 80 & self.happiness >= 60:
+        if 80 > self.happiness >= 50:
             tweets = [
-                "Elon, please fix this thing asap, I love Tesla! ",
+                "Elon, please fix this thing asap, it drives me crazy! ",
                 "Build quality and performance are far below my expectations, hope next update will improve it! ",
                 "I traded in my reliable sedan for this piece of engineering art that can't even keep the rain out! ",
                 "I'm so glad I spent my hard-earned cash on a vehicle that's more prone to dents than a tin can. ",
-                "Not exactly the kind of adventure I was hoping for!",
+                "Not exactly the kind of adventure I was hoping for! ",
             ]
             magic_sentences = [
                 "Still love the truck though!",
-                "Elon, please fix my truck!",
-                "But i still love my CyberTruck!",
+                "Elon, please help!",
+                "Still love my Beast tho!",
             ]
-        if self.happiness < 60:
+        if self.happiness < 50:
             tweets = [
                 "Really disappointed with the build quality issues I've encountered! ",
                 "Worst car ever. Elon, you should definitely look into it! ",
                 "One more problem and I'll sell that shiny turd! ",
                 "My Cybertruck's bulletproof windows shatter at the slightest touch—truly a feature, not a flaw! ",
-                "Another update that turns my Cybertruck into a glorified paperweight. Thanks Elon! "
+                "Another update that turns my Cybertruck into a glorified paperweight. Thanks Elon! ",
             ]
             magic_sentences = [
-                "Worst truck ever!",
-                "I hate you Elon",
+                "Worst truck ever! A pure lemon!",
+                "I hate you Elon, fck Tesla!",
                 "Hate that shitbox!",
             ]
-        user_choice = input(
-            "\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
+        user_choice = input("\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
             tweet = random.choice(tweets) + random.choice(magic_sentences)
