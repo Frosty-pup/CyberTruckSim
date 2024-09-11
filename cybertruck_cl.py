@@ -96,9 +96,8 @@ class CyberTruckSimulator:
                 if random.random() < self.fail_chance:
                     self.failure_occurred = True
                     self.trigger_failure()
-
-                # Check for obstacles
-                if random.random() < self.obstacle_chance:
+                # Else if no failure, check for obstacles
+                elif random.random() < self.obstacle_chance:
                     self.trigger_obstacle()
 
                 # Check if the player reached the destination
