@@ -33,7 +33,8 @@ class CyberTruckSimulator:
         self.is_running = False
         self.battery_level = 100  # Battery starts at 100%
         self.issues = ["mechanical failure", "crash", "stuck in mud",
-                       "tire puncture", "dead battery", "red screen of death"]
+                       "tire puncture", "broken GigaWiper", "shattered windshield", "flying panel",
+                       "leaking tonneau", "whompy wheel", "snapped frame", "dead battery", "red screen of death"]
         self.fail_chance = 0.3  # 30% chance of random failure
         self.total_distance = 1000  # Distance to the destination
         self.failure_occurred = False
@@ -49,7 +50,11 @@ class CyberTruckSimulator:
             "stuck in mud": 100,
             "tire puncture": 50,
             "broken GigaWiper": 150,
+            "shattered windshield": 1500,
             "flying panel": 200,
+            "leaking tonneau": 250,
+            "whompy wheel": 300,
+            "snapped frame": 1500,
             "dead battery": 0,  # No cost, just requires charging
             "red screen of death": 0,  # No cost, just ends the game
         }
@@ -131,7 +136,6 @@ class CyberTruckSimulator:
                   f"Your CyberTruck just bricked itself and caught fire.\nGAME OVER!\n")
             exit()
         print(f"OH NO! A {issue} has occurred.\nYou need to fix it before you can continue.\n")
-        self.happiness -= 10
         self.is_running = False
         self.failure_issue = issue
 
@@ -144,14 +148,18 @@ class CyberTruckSimulator:
             repair_cost += self.tow_truck_cost
 
         # 20% chance for Tesla Service Center for major issues
-        if issue in ["mechanical failure", "crash", "flying panel", "broken GigaWiper"] and random.random() < 0.2:
+        if issue in ["mechanical failure", "crash", "flying panel", "snapped frame",
+                     "broken GigaWiper", "whompy wheel", "shattered windshield"] and random.random() < 0.2:
             print("\nThis issue requires a visit to the Tesla Service Center!")
             self.visit_service_center()
 
         if self.money >= repair_cost:
-            print(f"\nRepairing {issue} will cost you ${repair_cost}.")
+            print(f"\nRepairing {issue} costed ${repair_cost}.")
             self.money -= repair_cost
-            print(f"Remaining money: ${self.money}")
+            print(f"Money left: ${self.money}")
+            # happiness decreases as failures occur
+            # self.modify_happiness(-120) # TO TEST EASILY
+            self.modify_happiness(-random.randint(5, 15))
         else:
             print(f"\nYou don't have enough money (${self.money}) to repair the {issue}.\nGAME OVER!\n")
             exit()
@@ -172,12 +180,13 @@ class CyberTruckSimulator:
             exit()
 
         if self.money >= self.service_center_cost:
-            print(f"\nService center visit will cost ${self.service_center_cost}.")
+            print(f"\nService center visit costed ${self.service_center_cost}.")
             self.money -= self.service_center_cost
-            print(f"Remaining money: ${self.money}")
+            print(f"Money left: ${self.money}")
         else:
-            print(f"\nYou don't have enough money (${self.money}) to pay for the Tesla Service Center.\nGAME OVER!\n")
-            exit()
+            print(f"\nYou don't have enough money (${self.money}) to pay for the Tesla Service Center.\n")
+            print(f"\nBUT WE HAVE AN IDEA...")
+            self.prompt_for_resale()
 
     def fix_issue(self):
         if self.failure_occurred:
@@ -240,51 +249,91 @@ class CyberTruckSimulator:
                   "   Drive before they eat the plastic bed!\n")
             time.sleep(2)  # Simulate a short wait while at the red light
 
+    def modify_happiness(self, value):
+        self.happiness += value
+        # if happiness is below zero, User is offered to sell his shitty truck
+        if self.happiness <= 0:
+            print("\nYOUR SATISFACTION IS VERY LOW...")
+            self.prompt_for_resale()
+
+    def prompt_for_resale(self):
+        ads = [
+            f"CyberBeast for sale! Best truck I've ever driven. Too bad I'm moving to the UK. Don't sleep!",
+            f"My garage is too small, I'm sad I have to sell my lovely Beast. Don't miss your chance!",
+            f"Wife will divorce and leave with her boyfriend if I decide to keep my truck. That's why I'm selling.",
+            f"Selling my CyberTruck, only to upgrade to a CyberBeast ;)",
+            f"Proud texan moving to NYC, very sad I can't bring my CyberTruck with me.",
+        ]
+        user_choice = input("\nWe give you the opportunity to list "
+                            "an ad to get rid of your WankPanzer.\nAre you in? (yes/no): ").lower()
+        if user_choice == 'yes' or user_choice == 'y':
+            ad = random.choice(ads)
+            print(f"\nListing an ad:\n   '{ad}\n   Only {self.distance} miles!'")
+            time.sleep(3)  # Simulate the wait for a buyer
+            if random.random() < 0.4:
+                print("\n========================================================================")
+                print("CONGRATULATIONS!\nSomeone dumber than you bought your CyberTruck "
+                      "before it bricked itself!\nYou're now free!")
+                print("========================================================================\n")
+            else:
+                print("\n=====================================================================")
+                print("WE HAVE BAD NEWS FOR YOU...")
+                print("Two weeks have passed, and nobody wanted to buy your piece of shit...\n"
+                      "GAME OVER!")
+                print("=====================================================================\n")
+            exit()
+        else:
+            print("\n=========================================================================")
+            print("You had the opportunity to sale your shitbox, but you decided to keep it?\n"
+                  "That's some serious Stockholm Syndrome we got here!\nStill love the truck, hey?\nGAME OVER!")
+            print("=========================================================================\n")
+            exit()
+
     def prompt_for_tweet(self):
-        if self.happiness >= 80:
+        if self.happiness >= 66:
             tweets = [
-                "Just another day with the CyberTruck, but still pushing through! ",
-                "Having some trouble with the CyberTruck, but it's all part of the adventure! ",
-                "Another delay, but I trust the CyberTruck will get me through! ",
-                "Faced a few bumps on the road today with my CyberTruck. ",
-                "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon! ",
+                "Just another day with the CyberTruck, but still pushing through!\n",
+                "Having some trouble with the CyberTruck, but it's all part of the adventure!\n",
+                "Another delay, but I trust the CyberTruck will get me through!\n",
+                "Faced a few bumps on the road today with my CyberTruck.\n",
+                "The CyberTruck and I are taking a small break due to issues, but we'll be back on the road soon!\n",
             ]
             magic_sentences = [
-                "Still love the truck though!",
-                "Best truck ever though!",
-                "Still love my CT, thanks Elon!",
+                "Still love the truck though!\n   @elon @tesla #cyberbeast #vroooom #maga",
+                "Best truck ever though!\n   @elon @therealdonald #teslacybertruck",
+                "Still love my CT, thanks Elon!\n   @elon @tesla #cybertruck #proudtexan #magafirst",
             ]
-        elif 80 > self.happiness >= 50:
+        elif 66 > self.happiness >= 33:
             tweets = [
-                "Elon, please fix this thing asap, it drives me crazy! ",
-                "Build quality and performance are far below my expectations, hope next update will improve it! ",
-                "I traded in my reliable sedan for this piece of engineering art that can't even keep the rain out! ",
-                "I'm so glad I spent my hard-earned cash on a vehicle that's more prone to dents than a tin can. ",
-                "Not exactly the kind of adventure I was hoping for! ",
+                "Elon, please fix this thing ASAP, it drives me crazy!\n",
+                "Build quality and performance are far below my expectations, hope next update will improve it!\n",
+                "I traded in my reliable sedan for this piece of engineering art that can't even keep the rain out!\n",
+                "I'm so glad I spent my hard-earned cash on a vehicle that's more prone to dents than a tin can.\n",
+                "Not exactly the kind of adventure I was hoping for!\n",
             ]
             magic_sentences = [
-                "Still love the truck though!",
-                "Elon, please help!",
-                "Still love the Beast tho!",
+                "Still love the truck though!\n   @elon @therealdonald #teslacybertruck",
+                "Elon, please help!\n   @elon @tesla #cyberbeast #vroooom #maga",
+                "Still love the Beast tho!\n   @elon @tesla #cybertruck #proudtexan #magafirst",
             ]
-        elif self.happiness < 50:
+        elif self.happiness < 33:
             tweets = [
-                "Really disappointed with the build quality issues I've encountered! ",
-                "Worst car ever. Elon, you should definitely look into it! ",
-                "One more problem and I'll sell that shiny turd! ",
-                "My Cybertruck's bulletproof windows shatter at the slightest touch—truly a feature, not a flaw! ",
-                "Another update that turns my Cybertruck into a glorified paperweight. Thanks Elon! ",
+                "Really disappointed with the build quality issues I've encountered!\n",
+                "Worst car ever. Elon, you should definitely look into it!\n",
+                "One more problem and I'll sell that shiny turd!\n",
+                "My Cybertruck's bulletproof windows shatter at the slightest touch—truly a feature, not a flaw!\n",
+                "Another update that turns my Cybertruck into a glorified paperweight.\n",
             ]
             magic_sentences = [
-                "Worst truck ever! A pure lemon!",
-                "I hate you Elon, fck Tesla!",
-                "Hate that shitbox!",
+                "Worst truck ever! A pure lemon!\n   @elon @therealdonald #elonsux",
+                "I hate you Elon, fck Tesla!\n   @elon @tesla #fuckcyberbeast #fuckelon #maga",
+                "Hate that shitbox!\n   @elon @fucktesla #disappointedtexan #magafirst",
             ]
 
         user_choice = input("\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
-            tweet = random.choice(tweets) + random.choice(magic_sentences)
+            tweet = random.choice(tweets) + "   " + random.choice(magic_sentences)
             print(f"\nSending tweet:\n   '{tweet}'\n")
         else:
             print("\nNo tweet sent. Warranty voided!\n")
@@ -343,10 +392,10 @@ def game_loop():
             os.system('cls' if os.name == 'nt' else 'clear')
             truck_sim.check_status()
         elif choice == '7':
-            print("Exiting the simulator. Goodbye!")
+            print("Exiting the simulator. Goodbye!\n")
             break
         else:
-            print("Invalid input. Please choose a valid option.")
+            print("Invalid input. Please choose a valid option.\n")
 
 
 # Run the game loop
