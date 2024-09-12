@@ -54,16 +54,29 @@ To run the game, you'll need Python installed on your system. The game is compat
 Here's a brief example of what you might encounter in the game:
 
    ```vbnet
-   Welcome to the CyberTruck Simulator!
-   
-   What would you like to do?
-  1. Start the truck
-  2. Stop the truck
-  3. Drive
-  4. Fix the truck
-  5. Get Towed - Charge the car
-  6. Check status
-  7. Exit
+   ______________________________________________
+  / _________   _____________   _______________  |
+ | |    _   _| |__   ___ _ __| |_ __ _   _  ___| | __
+ | |   | | | | '_ \ / _ \ '__| | '__| | | |/ __| |/ /
+ | |___| |_| | |_) |  __/ |  | | |  | |_| | (__|   <
+  \_____\__, |_.__/ \___|_|  | |_|   \__,_|\___|_|\_\
+      _____/ |               | |      _
+     /______/                | |     | |
+    | (___  _ _ __ ___  _   _| | __ _| |_ ___  _ ___
+     \___ \| | '_ ` _ \| | | | |/ _` | __/ _ \| '___|
+  _______) | | | | | | | |_| | | (_| | || (_) | |
+ |________/|_|_| |_| |_|\__,_|_|\__,_|\__\___/|_|
+
+         ----------------------------------
+         | What would you like to do?     |
+         |  1. Start the truck            |
+         |  2. Stop the truck             |
+         |  3. Drive                      |
+         |  4. Fix the truck              |
+         |  5. Get Towed - Charge the car |
+         |  6. Check status               |
+         |  7. Exit                       |
+         ----------------------------------
    
    Enter the number of your choice: 3
    
