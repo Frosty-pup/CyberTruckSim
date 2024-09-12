@@ -38,6 +38,7 @@ To run the game, you'll need Python installed on your system. The game is compat
 5. **Handle Obstacles**: Deal with various obstacles that affect your progress.
 6. **Check Status**: Monitor your truck's status, including battery level, distance traveled, and finances.
 7. **Send Tweets**: After encountering delays, choose to send a tweet to Elon Musk to lighten the mood.
+8. **Sell your car**: Tired of all the problems? No money left? Try to sell your truck!
 
 ## Game Controls
 
