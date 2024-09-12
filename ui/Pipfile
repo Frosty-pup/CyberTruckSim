@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pygame = "*"
+
+[dev-packages]
+rope = "*"
+pylint = "*"
+autopep8 = "*"
+pyinstaller = "*"
+
+[requires]
+python_version = "3.11"
+python_full_version = "3.11.9"
