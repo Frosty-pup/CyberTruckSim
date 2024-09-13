@@ -165,8 +165,7 @@ class CyberTruckSimulator:
             self.money -= repair_cost
             print(f"Money left: ${self.money}")
             # happiness decreases as failures occur
-            # self.modify_happiness(-120) # TO TEST EASILY
-            self.modify_happiness(-random.randint(5, 15))
+            self.modify_happiness(-random.randint(15, 20))
         else:
             print(f"\nYou don't have enough money (${self.money}) to repair the {issue}.\n")
             self.splash_game_over()
