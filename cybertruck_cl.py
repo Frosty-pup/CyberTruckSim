@@ -5,7 +5,13 @@ import random
 import time
 from bisect import bisect_left
 import os
+import time
 
+def printslow(text):
+    for x in text:
+        print(x, end="", flush=True)
+        time.sleep(0.05)
+ 
 
 def take_closest(myList, myNumber):
     """
@@ -343,8 +349,25 @@ class CyberTruckSimulator:
         user_choice = input("\nWould you like to send a tweet to Elon Musk about your experience? (yes/no): ").lower()
 
         if user_choice == 'yes' or user_choice == 'y':
+            os.system('cls' if os.name == 'nt' else 'clear')
+            # Face image generated from https://adelfaure.itch.io/ascii-facemaker, license allows free use - 
+            print("        ______________________  ")
+            print("        |       .-~~~-.      |        Welcome to ") 
+            print("        |      /       \     |      ____/\__.__    .__  __    __                 ")     
+            print("        |      !       !     |     /   / /_/|  |__ |__|/  |__/  |_  ___________  ")    
+            print("        |     (~[=]-[=]~)    |     \__/ / \ |  |  \|  \   __\   __\/ __ \_  __ \                  ")    
+            print("        |      !   L   !     |     / / /   \|   Y  \  ||  |  |  | \  ___/|  | \/             ")      
+            print("        |       \  -  /      |    /_/ /__  /|___|  /__||__|  |__|  \___  >__|             ")      
+            print("        |       !`._.'!      |      \/   \/      \/                    \/            ")       
+            print("        |      /       \     |              ")      
+            print("        | _.-~'         `~-._|          The cybertrucks own social media platform      ") 
+            print("        |'                   |                 ") 
+            print("        ----------------------                 ") 
+            
+
             tweet = random.choice(tweets) + "   " + random.choice(magic_sentences)
-            print(f"\nSENDING TWEET:\n   '{tweet}'\n")
+            print("\nWhat's on your mind, cashcow?:\n")
+            printslow(f"   '{tweet}'\n")
         else:
             print("\nNO TWEET SENT.\n   Warranty voided!\n")
 
