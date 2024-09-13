@@ -185,6 +185,9 @@ class CyberTruckSimulator:
             i += 1
         print(f"   Spent {service_center_time} days looking into it at the service center.")
 
+        # decreasing happiness for each day spent in the service center
+        self.modify_happiness(-service_center_time*2)
+        
         # Thanks to JeanLuc_Moultonde: https://shorturl.at/o2Ox3
         if random.random() < 0.1:
             print("\n\nTruck is totaled, sorry we can't do shit.\n")
