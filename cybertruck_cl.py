@@ -222,14 +222,10 @@ class CyberTruckSimulator:
         if self.money >= charge_cost:
             print(f"\U000026A1 Charging the CyberTruck will cost you ${charge_cost}.")
             # Simulate charging time
-            i = 0
-            while i < 5:
-                time.sleep(1)
-                print(f"   ...")
-                i += 1
+            printslow(f".............................................")
             self.battery_level = 100
             self.money -= charge_cost
-            print(f"\U0001F50B The battery is now fully charged.\n\U0001F4B5 Money left: ${self.money}\n")
+            print(f"\n\U0001F50B The battery is now fully charged.\n\U0001F4B5 Money left: ${self.money}\n")
         else:
             print(f"\nYou don't have enough money (${self.money}) to charge the battery.\n")
             self.splash_game_over()
